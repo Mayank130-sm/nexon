@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus | Premium Digital Solutions</title>
+  <meta name="description" content="Transform your digital presence with our cutting-edge web solutions and design services">
+  <!-- Preload critical resources -->
+  <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            },
+            dark: {
+              900: '#0f172a',
+              800: '#1e293b',
+              700: '#334155',
+              600: '#475569',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    .gradient-text {
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    @keyframes spin-slow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .animate-spin-slow {
+      animation: spin-slow 2s linear infinite;
+    }
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .progress-bar {
+      transition: width 0.5s ease;
+    }
+    
+    /* Modern additions */
+    .glass-effect {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .dark .glass-effect {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .hover-scale {
+      transition: transform 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: scale(1.03);
+    }
+    .text-gradient {
+      background: linear-gradient(90deg, #0ea5e9, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .floating {
+      animation: floating 6s ease-in-out infinite;
+    }
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    .gradient-border {
+      position: relative;
+      border-radius: 1rem;
+    }
+    .gradient-border::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 1rem;
+      padding: 2px;
+      background: linear-gradient(45deg, #0ea5e9, #8b5cf6);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    .parallax-bg {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-900 dark:bg-dark-900 dark:text-gray-100 transition-colors duration-300">
+  
+  <!-- Preloader -->
+  <div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white dark:bg-dark-900 transition-opacity duration-500">
+    <div class="w-48 h-48 relative mb-8">
+      <svg class="animate-spin-slow w-full h-full text-primary-600 dark:text-primary-400" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="8" stroke-dasharray="282.74 282.74" stroke-linecap="round" class="opacity-30"></circle>
+        <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="8" stroke-dasharray="141.37 282.74" stroke-linecap="round"></circle>
+      </svg>
+      <div class="absolute inset-0 flex items-center justify-center text-xl font-bold text-gray-800 dark:text-gray-200">
+        <span id="loading-percentage">0%</span>
+      </div>
+    </div>
+    <div class="w-64 bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+      <div id="loading-bar" class="bg-primary-600 h-2.5 rounded-full progress-bar" style="width: 0%;"></div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="sticky top-0 z-40 backdrop-blur-lg bg-white/80 dark:bg-dark-900/80 shadow-sm">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold">
+        <span class="gradient-text bg-gradient-to-r from-primary-600 to-purple-600">Nexus</span>
+      </a>
+      
+      <div class="hidden md:flex space-x-8">
+        <a href="#hero" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors relative group">
+          Home
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 dark:bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#features" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors relative group">
+          Features
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 dark:bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#work" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors relative group">
+          Work
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 dark:bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#stats" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors relative group">
+          Stats
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 dark:bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#testimonials" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors relative group">
+          Testimonials
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 dark:bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#contact" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors relative group">
+          Contact
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 dark:bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </div>
+      
+      <div class="flex items-center space-x-4">
+        <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors relative group">
+          <i id="sunIcon" class="fas fa-sun dark:hidden"></i>
+          <i id="moonIcon" class="fas fa-moon hidden dark:inline"></i>
+          <span class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary-600 dark:bg-primary-400 transition-all duration-300 group-hover:w-3/4"></span>
+        </button>
+        <button class="md:hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" id="mobileMenuButton">
+          <i class="fas fa-bars"></i>
+        </button>
+        <a href="#contact" class="hidden md:block px-6 py-2 bg-gradient-to-r from-primary-600 to-purple-600 text-white rounded-full font-medium hover:opacity-90 transition-opacity shadow-lg shadow-primary-500/20 hover:shadow-primary-500/40 transition-all">
+          Get Started
+        </a>
+      </div>
+    </nav>
+    
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 right-0 bg-white dark:bg-gray-800 shadow-lg rounded-b-lg mx-4 py-4 px-6 glass-effect">
+      <div class="flex flex-col space-y-4">
+        <a href="#hero" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-2">Home</a>
+        <a href="#features" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-2">Features</a>
+        <a href="#work" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-2">Work</a>
+        <a href="#stats" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-2">Stats</a>
+        <a href="#testimonials" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-2">Testimonials</a>
+        <a href="#contact" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-2">Contact</a>
+        <a href="#contact" class="mt-4 px-6 py-2 bg-gradient-to-r from-primary-600 to-purple-600 text-white rounded-full font-medium hover:opacity-90 transition-opacity text-center hover:shadow-primary-500/40 transition-all">
+          Get Started
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute inset-0 bg-gradient-to-b from-white/80 to-white dark:from-dark-900/80 dark:to-dark-900"></div>
+      <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2232&auto=format&fit=crop')] bg-cover bg-center opacity-20 dark:opacity-10 parallax-bg"></div>
+    </div>
+    
+    <div class="container mx-auto px-6 py-24 md:py-32 lg:py-40 flex flex-col items-center text-center">
+      <div class="glass-effect rounded-2xl px-6 py-3 mb-6">
+        <span class="text-gradient font-medium">DIGITAL TRANSFORMATION EXPERTS</span>
+      </div>
+      <h1 class="text-4xl md:text-6xl font-bold max-w-3xl mb-6">
+        <span class="gradient-text bg-gradient-to-r from-primary-600 to-purple-600">Elevate</span> Your Digital Experience
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mb-10">
+        We craft beautiful, high-performing digital experiences that drive results for your business.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="#contact" class="px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 text-white rounded-full font-medium hover:opacity-90 transition-opacity shadow-lg shadow-primary-500/20 hover:shadow-primary-500/40 transition-all group relative overflow-hidden">
+          <span class="relative z-10">Start Your Project</span>
+          <span class="absolute inset-0 bg-gradient-to-r from-primary-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+        </a>
+        <a href="#features" class="px-8 py-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 rounded-full font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center group">
+          <span>Learn More</span>
+          <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+      
+      <!-- Floating elements for modern look -->
+      <div class="absolute top-1/4 left-10 w-16 h-16 rounded-full bg-primary-400/20 blur-xl -z-10"></div>
+      <div class="absolute bottom-1/4 right-10 w-24 h-24 rounded-full bg-purple-400/20 blur-xl -z-10"></div>
+    </div>
+    
+    <!-- Floating 3D shape -->
+    <div class="absolute bottom-20 right-20 w-32 h-32 rounded-lg bg-gradient-to-br from-primary-500 to-purple-500 opacity-10 rotate-45 -z-10 floating hidden lg:block"></div>
+  </section>
+
+  <!-- Clients Section -->
+  <section class="py-12 bg-gray-100 dark:bg-gray-800/50">
+    <div class="container mx-auto px-6">
+      <p class="text-center text-gray-500 dark:text-gray-400 mb-8">Trusted by innovative companies worldwide</p>
+      <div class="flex flex-wrap justify-center gap-8 md:gap-16 items-center opacity-70 hover:opacity-100 transition-opacity">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png" alt="React" class="h-10 dark:invert hover:scale-110 transition-transform">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1024px-Tailwind_CSS_Logo.svg.png" alt="Tailwind CSS" class="h-8 dark:invert hover:scale-110 transition-transform">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/1200px-Laravel.svg.png" alt="Laravel" class="h-10 dark:invert hover:scale-110 transition-transform">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/UbuntuCoF.svg/1200px-UbuntuCoF.svg.png" alt="Ubuntu" class="h-10 dark:invert hover:scale-110 transition-transform">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1280px-Google_2015_logo.svg.png" alt="Google" class="h-8 dark:invert hover:scale-110 transition-transform">
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-20">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-primary-600 font-medium">WHY CHOOSE US</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">Powerful Features</h2>
+        <p class="text-gray-600 dark:text-gray-300">Our platform is packed with everything you need to succeed in the digital landscape.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700 card-hover group">
+          <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/50 transition-colors">
+            <i class="fas fa-bolt text-primary-600 dark:text-primary-400 text-xl group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Lightning Fast</h3>
+          <p class="text-gray-600 dark:text-gray-300">Optimized for speed with cutting-edge technology to ensure your site loads in milliseconds.</p>
+          <div class="mt-4">
+            <a href="#" class="text-primary-600 dark:text-primary-400 font-medium inline-flex items-center group">
+              Learn more
+              <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Feature 2 -->
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700 card-hover group">
+          <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/50 transition-colors">
+            <i class="fas fa-shield-alt text-primary-600 dark:text-primary-400 text-xl group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Secure by Design</h3>
+          <p class="text-gray-600 dark:text-gray-300">Enterprise-grade security with regular updates and monitoring to protect your data.</p>
+          <div class="mt-4">
+            <a href="#" class="text-primary-600 dark:text-primary-400 font-medium inline-flex items-center group">
+              Learn more
+              <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Feature 3 -->
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700 card-hover group">
+          <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/50 transition-colors">
+            <i class="fas fa-mobile-alt text-primary-600 dark:text-primary-400 text-xl group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Fully Responsive</h3>
+          <p class="text-gray-600 dark:text-gray-300">Looks perfect on any device, from smartphones to large desktop monitors.</p>
+          <div class="mt-4">
+            <a href="#" class="text-primary-600 dark:text-primary-400 font-medium inline-flex items-center group">
+              Learn more
+              <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Feature 4 -->
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700 card-hover group">
+          <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/50 transition-colors">
+            <i class="fas fa-cog text-primary-600 dark:text-primary-400 text-xl group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Customizable</h3>
+          <p class="text-gray-600 dark:text-gray-300">Tailor every aspect to match your brand identity and specific requirements.</p>
+          <div class="mt-4">
+            <a href="#" class="text-primary-600 dark:text-primary-400 font-medium inline-flex items-center group">
+              Learn more
+              <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Feature 5 -->
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700 card-hover group">
+          <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/50 transition-colors">
+            <i class="fas fa-chart-line text-primary-600 dark:text-primary-400 text-xl group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">SEO Optimized</h3>
+          <p class="text-gray-600 dark:text-gray-300">Built with best practices to help you rank higher in search engine results.</p>
+          <div class="mt-4">
+            <a href="#" class="text-primary-600 dark:text-primary-400 font-medium inline-flex items-center group">
+              Learn more
+              <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Feature 6 -->
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700 card-hover group">
+          <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/50 transition-colors">
+            <i class="fas fa-headset text-primary-600 dark:text-primary-400 text-xl group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">24/7 Support</h3>
+          <p class="text-gray-600 dark:text-gray-300">Our dedicated team is always available to help you with any questions.</p>
+          <div class="mt-4">
+            <a href="#" class="text-primary-600 dark:text-primary-400 font-medium inline-flex items-center group">
+              Learn more
+              <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Kits Section -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-900/50">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-primary-600 font-medium">OUR BRAND KITS</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">Featured Brand Kits</h2>
+        <p class="text-gray-600 dark:text-gray-300">Explore our collection of professionally designed brand kits.</p>
+      </div>
+      
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 max-w-2xl mx-auto gradient-border">
+        <div class="flex flex-col space-y-4">
+          <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-lg transition-colors">
+            <div class="flex items-center">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-blue-300 mr-4"></div>
+              <span class="font-medium">ECorp</span>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" class="sr-only peer">
+              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
+            </label>
+          </div>
+          <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-lg transition-colors">
+            <div class="flex items-center">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-pink-300 mr-4"></div>
+              <span class="font-medium">ICorp</span>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" class="sr-only peer">
+              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
+            </label>
+          </div>
+          <div class="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-lg transition-colors">
+            <div class="flex items-center">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-teal-300 mr-4"></div>
+              <span class="font-medium">The Agency</span>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" checked class="sr-only peer">
+              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
+            </label>
+          </div>
+        </div>
+        
+        <div class="mt-8 flex justify-center">
+          <button class="px-6 py-2 bg-gradient-to-r from-primary-600 to-purple-600 text-white rounded-full font-medium hover:opacity-90 transition-opacity shadow-lg shadow-primary-500/20 hover:shadow-primary-500/40 transition-all">
+            Download Selected Kits
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section id="stats" class="py-20 bg-gradient-to-r from-primary-600 to-purple-600 text-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Environmental Impact</h2>
+        <p class="text-primary-100">We're committed to sustainable digital solutions that reduce environmental impact.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Carbon Footprint -->
+        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/15 transition-colors card-hover">
+          <h3 class="text-xl font-bold mb-4">Managed Portfolio Carbon Footprint</h3>
+          <div class="text-4xl font-bold mb-2">45,048</div>
+          <div class="text-primary-100 mb-4">tCO₂e</div>
+          <div class="flex justify-between text-sm mb-4">
+            <span>2022</span>
+            <span>2021</span>
+            <span>2020</span>
+            <span>2019</span>
+          </div>
+          <div class="flex justify-between text-sm mb-2">
+            <span>45,048</span>
+            <span>14,111</span>
+            <span>32,813</span>
+            <span>38,673</span>
+          </div>
+          <div class="text-sm text-primary-200">↓ 16% from 2019</div>
+        </div>
+        
+        <!-- Energy Intensity -->
+        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/15 transition-colors card-hover">
+          <h3 class="text-xl font-bold mb-4">Managed Portfolio Energy Intensity</h3>
+          <div class="text-4xl font-bold mb-2">123</div>
+          <div class="text-primary-100 mb-4">kWh/m²</div>
+          <div class="text-sm mb-4">Total kWh: 47,790,662</div>
+          <div class="flex justify-between text-sm mb-2">
+            <span>2022</span>
+            <span>2021</span>
+            <span>2020</span>
+            <span>2019</span>
+          </div>
+          <div class="flex justify-between text-sm mb-2">
+            <span>47,790,662</span>
+            <span>49,324,077</span>
+            <span>48,784,205</span>
+            <span>65,198,706</span>
+          </div>
+          <div class="text-sm text-primary-200">↓ 27% from 2019</div>
+        </div>
+        
+        <!-- Carbon Emissions Graph -->
+        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl md:col-span-2 lg:col-span-1 hover:bg-white/15 transition-colors card-hover">
+          <h3 class="text-xl font-bold mb-4">Embodied Carbon Emissions</h3>
+          <div class="text-primary-100 mb-2">Intensity measured by kgCO₂/m²</div>
+          
+          <div class="flex justify-between text-xs mb-2">
+            <span>500 kgCO₂/m² - Target 2030</span>
+            <span>600 kgCO₂/m² - Target 2025</span>
+          </div>
+          
+          <div class="bg-white/20 rounded-lg p-4 mb-4">
+            <div class="h-48 flex items-end space-x-1">
+              <div class="w-6 bg-primary-400 hover:bg-primary-300 transition-colors cursor-pointer" style="height: 84%" title="675 kgCO₂/m²"></div>
+              <div class="w-6 bg-primary-400 hover:bg-primary-300 transition-colors cursor-pointer" style="height: 84%" title="677 kgCO₂/m²"></div>
+              <div class="w-6 bg-primary-300 hover:bg-primary-200 transition-colors cursor-pointer" style="height: 69%" title="550 kgCO₂/m²"></div>
+              <div class="w-6 bg-primary-300 hover:bg-primary-200 transition-colors cursor-pointer" style="height: 69%" title="551 kgCO₂/m²"></div>
+              <div class="w-6 bg-primary-300 hover:bg-primary-200 transition-colors cursor-pointer" style="height: 69%" title="552 kgCO₂/m²"></div>
+              <div class="w-6 bg-primary-200 hover:bg-primary-100 transition-colors cursor-pointer" style="height: 69%" title="559 kgCO₂/m²"></div>
+              <div class="w-6 bg-primary-200 hover:bg-primary-100 transition-colors cursor-pointer" style="height: 71%" title="569 kgCO₂/m²"></div>
+              <div class="w-6 bg-primary-200 hover:bg-primary-100 transition-colors cursor-pointer" style="height: 71%" title="569 kgCO₂/m²"></div>
+              <div class="w-6 bg-green-400 hover:bg-green-300 transition-colors cursor-pointer" style="height: 34%" title="269 kgCO₂/m²"></div>
+              <div class="w-6 bg-green-400 hover:bg-green-300 transition-colors cursor-pointer" style="height: 4%" title="29 kgCO₂/m²"></div>
+              <div class="w-6 bg-green-300 hover:bg-green-200 transition-colors cursor-pointer" style="height: 10%" title="82 kgCO₂/m²"></div>
+              <div class="w-6 bg-green-300 hover:bg-green-200 transition-colors cursor-pointer" style="height: 5%" title="44 kgCO₂/m²"></div>
+              <div class="w-6 bg-green-200 hover:bg-green-100 transition-colors cursor-pointer" style="height: 14%" title="109 kgCO₂/m²"></div>
+              <div class="w-6 bg-green-200 hover:bg-green-100 transition-colors cursor-pointer" style="height: 13%" title="106 kgCO₂/m²"></div>
+            </div>
+          </div>
+          
+          <div class="flex justify-between text-xs">
+            <span>675</span>
+            <span>677</span>
+            <span>550</span>
+            <span>551</span>
+            <span>552</span>
+            <span>559</span>
+            <span>569</span>
+            <span>569</span>
+            <span>269</span>
+            <span>29</span>
+            <span>82</span>
+            <span>44</span>
+            <span>109</span>
+            <span>106</span>
+          </div>
+          
+          <div class="mt-4 flex justify-between">
+            <button class="text-sm text-primary-200 hover:text-white flex items-center group">
+              <i class="fas fa-download mr-2 group-hover:translate-y-0.5 transition-transform"></i>
+              Download the data
+            </button>
+            <button class="text-sm text-primary-200 hover:text-white flex items-center group">
+              <i class="fas fa-external-link-alt mr-2 group-hover:translate-y-0.5 transition-transform"></i>
+              See full breakdown
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Section -->
+  <section id="work" class="py-20 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-primary-600 font-medium">OUR PORTFOLIO</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">Recent Projects</h2>
+        <p class="text-gray-600 dark:text-gray-300">Explore our latest work and see how we've helped businesses like yours succeed.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Project 1 -->
+        <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all card-hover">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Project 1" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end p-6">
+            <div>
+              <h3 class="text-xl font-bold text-white mb-1">E-commerce Platform</h3>
+              <p class="text-gray-300">Increased conversions by 120%</p>
+              <button class="mt-3 px-4 py-2 bg-white text-gray-800 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                View Case Study
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all card-hover">
+          <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2069&auto=format&fit=crop" alt="Project 2" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end p-6">
+            <div>
+              <h3 class="text-xl font-bold text-white mb-1">Mobile App Design</h3>
+              <p class="text-gray-300">500k+ downloads in first month</p>
+              <button class="mt-3 px-4 py-2 bg-white text-gray-800 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                View Case Study
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 3 -->
+        <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all card-hover">
+          <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=2070&auto=format&fit=crop" alt="Project 3" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end p-6">
+            <div>
+              <h3 class="text-xl font-bold text-white mb-1">Corporate Website</h3>
+              <p class="text-gray-300">Modern redesign with CMS</p>
+              <button class="mt-3 px-4 py-2 bg-white text-gray-800 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                View Case Study
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="#" class="inline-flex items-center px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-full font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
+          View All Projects
+          <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-20">
+   
+    
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-primary-600 font-medium">CLIENT FEEDBACK</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">What Our Clients Say</h2>
+        <p class="text-gray-600 dark:text-gray-300">Don't just take our word for it - hear from some of our amazing clients.</p>
+      </div>
+      
+      
+      <div class="relative max-w-4xl mx-auto">
+  <!-- Testimonial Video Container -->
+  <div class="testimonial active animate-fade-in">
+    <div class="bg-white/80 dark:bg-gray-800/90 backdrop-blur-sm p-6 md:p-8 rounded-xl shadow-lg border border-gray-200/50 dark:border-gray-700/50 transition-all duration-300 hover:shadow-xl">
+      
+      <!-- Video Container with Optimizations -->
+      <div class="testimonial-carousel overflow-hidden rounded-lg aspect-video">
+        <video 
+          autoplay 
+          muted 
+          playsinline 
+          controls 
+          preload="auto"
+          class="w-full h-full object-cover"
+          poster="video-preview.jpg" <!-- Add a poster frame -->
+          aria-label="Customer testimonial video"
+        >
+          <source src="testimonials.mp4" type="video/mp4">
+          <source src="testimonials.webm" type="video/webm"> <!-- WebM fallback -->
+          <p class="p-4 text-gray-600 dark:text-gray-300">
+            Your browser doesn't support HTML5 video. 
+            <a href="testimonials.mp4" class="text-blue-500 hover:underline">Download it here</a>.
+          </p>
+        </video>
+      </div>
+
+    </div>
+  </div>
+</div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-primary-600 to-purple-600 text-white relative overflow-hidden">
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2232&auto=format&fit=crop')] bg-cover bg-center opacity-10 parallax-bg"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-600/90 to-purple-600/90"></div>
+    </div>
+    <div>
+    
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Business?</h2>
+      <p class="text-xl text-primary-100 max-w-2xl mx-auto mb-10">
+        Let's create something amazing together. Get in touch with our team today to discuss your project.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#contact" class="px-8 py-4 bg-white text-primary-600 rounded-full font-bold hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl transition-all group relative overflow-hidden">
+          <span class="relative z-10">Start Your Project</span>
+          <span class="absolute inset-0 bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+        </a>
+        <a href="tel:+1234567890" class="px-8 py-4 border-2 border-white text-white rounded-full font-bold hover:bg-white/10 transition-colors group flex items-center justify-center">
+          <i class="fas fa-phone mr-2 group-hover:animate-pulse"></i> Call Us Now
+        </a>
+      </div>
+    </div>
+    </div>
+    
+    <!-- Floating elements -->
+    <div class="absolute top-20 left-20 w-16 h-16 rounded-full bg-white/10 blur-xl -z-10 floating" style="animation-delay: 0.5s;"></div>
+    <div class="absolute bottom-20 right-20 w-24 h-24 rounded-full bg-white/10 blur-xl -z-10 floating" style="animation-delay: 1s;"></div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden gradient-border hover-scale">
+        <div class="md:flex">
+          <div class="md:w-1/2 bg-gradient-to-br from-primary-600 to-purple-600 text-white p-10 flex flex-col justify-center">
+            <h3 class="text-2xl font-bold mb-4">Get In Touch</h3>
+            <p class="mb-6 text-primary-100">Have a project in mind or want to learn more about our services? We'd love to hear from you.</p>
+            
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 mt-1">
+                  <i class="fas fa-map-marker-alt text-primary-300"></i>
+                </div>
+                <div class="ml-4">
+                  <p class="font-medium">Address</p>
+                  <p class="text-primary-200">123 Design Street, Creative City, CA 90210</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="flex-shrink-0 mt-1">
+                  <i class="fas fa-envelope text-primary-300"></i>
+                </div>
+                <div class="ml-4">
+                  <p class="font-medium">Email</p>
+                  <p class="text-primary-200">hello@nexus.example</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="flex-shrink-0 mt-1">
+                  <i class="fas fa-phone text-primary-300"></i>
+                </div>
+                <div class="ml-4">
+                  <p class="font-medium">Phone</p>
+                  <p class="text-primary-200">+1 (555) 123-4567</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-8">
+              <h4 class="font-medium mb-3">Follow Us</h4>
+              <div class="flex space-x-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="md:w-1/2 p-10">
+            <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Send Us a Message</h3>
+            <form class="space-y-4">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Name</label>
+                <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white transition-colors" placeholder="John Doe">
+              </div>
+              
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email Address</label>
+                <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white transition-colors" placeholder="you@example.com">
+              </div>
+              
+              <div>
+                <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Subject</label>
+                <input type="text" id="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white transition-colors" placeholder="Project Inquiry">
+              </div>
+              
+              <div>
+                <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
+                <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white transition-colors" placeholder="Tell us about your project..."></textarea>
+              </div>
+              
+              <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-primary-600 to-purple-600 text-white font-bold rounded-lg hover:opacity-90 transition-opacity shadow-lg hover:shadow-primary-500/40 transition-all group relative overflow-hidden">
+                <span class="relative z-10">Send Message</span>
+                <span class="absolute inset-0 bg-gradient-to-r from-primary-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 pt-16 pb-8">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-12 mb-12">
+        <div>
+          <h3 class="text-white text-xl font-bold mb-4">Nexus</h3>
+          <p class="mb-4">Transforming ideas into exceptional digital experiences that drive business growth.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors flex items-center justify-center text-gray-300 hover:text-white">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors flex items-center justify-center text-gray-300 hover:text-white">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors flex items-center justify-center text-gray-300 hover:text-white">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors flex items-center justify-center text-gray-300 hover:text-white">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-white text-lg font-semibold mb-4">Services</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white transition-colors flex items-center group">
+              <span class="w-2 h-2 rounded-full bg-primary-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              Web Design
+            </a></li>
+            <li><a href="#" class="hover:text-white transition-colors flex items-center group">
+              <span class="w-2 h-2 rounded-full bg-primary-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              App Development
+            </a></li>
+            <li><a href="#" class="hover:text-white transition-colors flex items-center group">
+              <span class="w-2 h-2 rounded-full bg-primary-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              UI/UX Design
+            </a></li>
+            <li><a href="#" class="hover:text-white transition-colors flex items-center group">
+              <span class="w-2 h-2 rounded-full bg-primary-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              Digital Marketing
+            </a></li>
+            <li><a href="#" class="hover:text-white transition-colors flex items-center group">
+              <span class="w-2 h-2 rounded-full bg-primary-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              SEO Services
+            </a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-white text-lg font-semibold mb-4">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white transition-colors flex items-center group">
+              <span class="w-2 h-2 rounded-full bg-primary-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              About Us
+            </a></li>
+            <li><a href="#" class="hover:text-white transition-colors flex items-center group">
+              <span class="w-2 h-2 rounded-full bg-primary-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              Our Team
+            </a></li>
+            <li><a href="#" class="hover:text-white transition-colors flex items-center group">
+              <span class="w-2 h-2 rounded-full bg-primary-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              Careers
+            </a></li>
+            <li><a href="#" class="hover:text-white transition-colors flex items-center group">
+              <span class="w-2 h-2 rounded-full bg-primary-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              Blog
+            </a></li>
+            <li><a href="#" class="hover:text-white transition-colors flex items-center group">
+              <span class="w-2 h-2 rounded-full bg-primary-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              Contact
+            </a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-white text-lg font-semibold mb-4">Newsletter</h4>
+          <p class="mb-4">Subscribe to our newsletter for the latest updates and insights.</p>
+          <form class="flex">
+            <input type="email" placeholder="Your email" class="px-4 py-2 w-full rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary-500 bg-gray-800 text-white">
+            <button type="submit" class="bg-primary-600 hover:bg-primary-700 px-4 py-2 rounded-r-lg transition-colors">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p>&copy; 2025 Nexus. All rights reserved.</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-white transition-colors">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top button -->
+  <button id="backToTop" class="fixed bottom-6 right-6 z-50 p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 hidden">
+    <i class="fas fa-arrow-up text-gray-700 dark:text-gray-200"></i>
+  </button>
+
+  <script>
+    // Wait for DOM to load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Theme toggle functionality
+      const themeToggle = document.getElementById('themeToggle');
+      const sunIcon = document.getElementById('sunIcon');
+      const moonIcon = document.getElementById('moonIcon');
+      
+      // Check for saved theme preference or system preference
+      if (localStorage.getItem('theme') === 'dark' || 
+          (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      } else {
+        document.documentElement.classList.remove('dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      }
+
+      // Toggle functionality
+      themeToggle.addEventListener('click', function() {
+        document.documentElement.classList.toggle('dark');
+        
+        if (document.documentElement.classList.contains('dark')) {
+          localStorage.setItem('theme', 'dark');
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+        } else {
+          localStorage.setItem('theme', 'light');
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+        }
+      });
+
+      // Preloader
+      const loader = document.getElementById('loader');
+      const loadingBar = document.getElementById('loading-bar');
+      const loadingPercentage = document.getElementById('loading-percentage');
+      let loadProgress = 0;
+      let loadingInterval;
+
+      // Simulate loading progress
+      function simulateLoading() {
+        loadingInterval = setInterval(() => {
+          if (loadProgress < 100) {
+            loadProgress += Math.floor(Math.random() * 10) + 1; // Increase by random amount
+            if (loadProgress > 100) loadProgress = 100;
+            loadingBar.style.width = `${loadProgress}%`;
+            loadingPercentage.textContent = `${loadProgress}%`;
+          } else {
+            clearInterval(loadingInterval);
+          }
+        }, 100); // Update every 100ms
+      }
+
+      // Call simulateLoading when the DOM is ready
+      simulateLoading();
+
+      // Hide preloader when the entire page (including images/videos) has loaded
+      window.addEventListener('load', function() {
+        // Ensure loadProgress reaches 100% before hiding
+        if (loadProgress < 100) {
+          loadProgress = 100;
+          loadingBar.style.width = '100%';
+          loadingPercentage.textContent = '100%';
+        }
+        clearInterval(loadingInterval); // Stop any ongoing simulation
+        
+        // Add a slight delay for the final animation to complete
+        setTimeout(function() {
+          loader.style.opacity = '0';
+          setTimeout(function() {
+            loader.style.display = 'none';
+          }, 500); // Match transition duration
+        }, 300); // Small delay to show 100%
+      });
+
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobileMenuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+          const icon = this.querySelector('i');
+          icon.classList.toggle('fa-bars');
+          icon.classList.toggle('fa-times');
+        });
+      }
+
+      // Testimonial carousel
+      const testimonials = document.querySelectorAll('.testimonial');
+      const dots = document.querySelectorAll('.testimonial-dot');
+      let currentTestimonial = 0;
+      let testimonialInterval;
+
+      function showTestimonial(index) {
+        // Validate index
+        if (index < 0) index = testimonials.length - 1;
+        if (index >= testimonials.length) index = 0;
+        
+        testimonials.forEach((testimonial, i) => {
+          testimonial.classList.add('hidden');
+          testimonial.classList.remove('animate-fade-in');
+          if (dots[i]) {
+            dots[i].classList.replace('opacity-100', 'opacity-30');
+          }
+        });
+        
+        testimonials[index].classList.remove('hidden');
+        setTimeout(function() {
+          testimonials[index].classList.add('animate-fade-in');
+        }, 10);
+        
+        if (dots[index]) {
+          dots[index].classList.replace('opacity-30', 'opacity-100');
+        }
+        
+        currentTestimonial = index;
+        
+        // Reset auto-rotation timer
+        clearInterval(testimonialInterval);
+        testimonialInterval = setInterval(rotateTestimonials, 8000);
+      }
+
+      function rotateTestimonials() {
+        const nextIndex = (currentTestimonial + 1) % testimonials.length;
+        showTestimonial(nextIndex);
+      }
+
+      // Initialize auto-rotation
+      if (testimonials.length > 0) {
+        showTestimonial(0); // Show the first testimonial
+        testimonialInterval = setInterval(rotateTestimonials, 8000);
+        // Add event listeners for dots
+        dots.forEach(dot => {
+          dot.addEventListener('click', function() {
+            const index = parseInt(this.dataset.index);
+            showTestimonial(index);
+          });
+        });
+      }
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const target = document.querySelector(targetId);
+          
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 80,
+              behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+              mobileMenu.classList.add('hidden');
+              mobileMenuButton.querySelector('i').classList.remove('fa-times');
+              mobileMenuButton.querySelector('i').classList.add('fa-bars');
+            }
+          }
+        });
+      });
+
+      // Form submission (prevent default for demo)
+      const form = document.querySelector('form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Thank you for your message! We will get back to you soon.');
+          form.reset();
+        });
+      }
+
+      // Back to top button
+      const backToTopButton = document.getElementById('backToTop');
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.remove('hidden');
+        } else {
+          backToTopButton.classList.add('hidden');
+        }
+      });
+      
+      backToTopButton.addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
